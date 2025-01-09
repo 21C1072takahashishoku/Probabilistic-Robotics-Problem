@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import random
 import time
 
-
+# Cameraクラス：ランドマークとの距離を観測（ノイズ付き）
 class Camera:
     def __init__(self, landmarks, max_range, sense_noise):
         self.landmarks = landmarks  # ランドマークの位置
@@ -22,6 +22,7 @@ class Camera:
         return z
 
 
+# RobotSimクラス：ロボットの動作シミュレーション
 class RobotSim:
     def __init__(self, landmarks, world_size, max_range, sense_noise):
         self.landmarks = landmarks  # ランドマークの位置 [(x1, y1), (x2, y2), ...]
@@ -50,6 +51,7 @@ class RobotSim:
         return self.camera.sense(self.x)
 
 
+# ParticleFilterクラス：パーティクルフィルタを用いた状態推定
 class ParticleFilter:
     def __init__(self, num_particles, world_size, landmarks):
         self.num_particles = num_particles
@@ -96,6 +98,7 @@ class ParticleFilter:
         return [{'x': p['x'], 'orientation': p['orientation']} for p in self.particles]
 
 
+# メイン関数：シミュレーションの実行
 def main():
     # 世界の設定
     world_size = 100.0
@@ -140,8 +143,14 @@ def main():
 
         # ロボットとランドマークを描画
         plt.scatter(robot_position, 0, s=100, c='red', label='Robot')
+
         for lm in landmarks:
-            color = 'blue' if lm in [landmark for _, landmark in measurements] else 'yellow'
+            # ロボットより右側にあり、観測範囲内のランドマークを青色に設定
+            if lm[0] > robot_position and abs(lm[0] - robot_position) <= max_range:
+                color = 'blue'  # 右側で観測範囲内の場合は青色
+            else:
+                color = 'yellow'  # それ以外は黄色
+
             plt.scatter(lm[0], lm[1], s=200, c=color, marker='*', label='Landmark')
 
         plt.title(f"Time Elapsed: {elapsed_time:.1f} seconds")
