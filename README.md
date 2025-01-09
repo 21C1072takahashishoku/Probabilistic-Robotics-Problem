@@ -24,6 +24,15 @@ git clone https://github.com/21C1072takahashishoku/Probabilistic-Robotics-Proble
 cd mcl
 ./main.py
 ```
+## パラメータ
+|パラメータ名|説明|
+|:---|:---|
+|world_size|ロボットが移動する世界のサイズ[m]|
+|landmarks = [(x, y)]|ランドマークの位置|
+|num_particles|パーティクルの数|
+|max_range|ロボットが観測できる最大距離[m]|
+|robot_speed|ロボットの並進速度 [m/s]|
+|forward_noise|ロボットが1m進む際に生じる移動距離の不確かさの標準偏差|
 
 ## 実行環境
 - Python 3.8.10
