@@ -1,7 +1,7 @@
 # Probabilistic-Robotics-Problem
 確率ロボティクスの課題提出用のリポジトリ
 
-## Description
+## 説明
 1次元の数直線上を右に動くロボットにmclを実装したものになります.
 
 ## 実行例
@@ -25,7 +25,7 @@ cd mcl
 ./main.py
 ```
 
-## 動作確認済み環境
+## 実行環境
 - Python 3.8.10
 - Ubuntu 20.04
 
